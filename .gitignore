@@ -10,4 +10,7 @@ target
 .cache-tests
 .gradle
 
+# RTemplate template folder - temporary, development time only
+/template/
+
 atlassian-ide-plugin.xml
