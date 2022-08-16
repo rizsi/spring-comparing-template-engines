@@ -1,7 +1,10 @@
 package com.jeroenreijn.examples.view;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +27,10 @@ public class RtemplateView extends AbstractTemplateView {
 		com.jeroenreijn.examples.model.i18nLayout i18n=(com.jeroenreijn.examples.model.i18nLayout)model.get("i18n");
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
-		try (PrintWriter writer = response.getWriter()) {
-			RtemplateViewInstance vi=new RtemplateViewInstance(context, writer, presentations, i18n);
+		try (OutputStream os = response.getOutputStream()) {
+			// PrintStream ps=new PrintStream(os, false, StandardCharsets.UTF_8);
+			RtemplateViewInstance vi=new RtemplateViewInstance(context, os, presentations, i18n);
 			vi.render();
-			writer.flush();
 		}
 	}
 }
