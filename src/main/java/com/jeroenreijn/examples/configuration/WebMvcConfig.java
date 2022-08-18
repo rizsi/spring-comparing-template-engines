@@ -32,6 +32,7 @@ import com.github.enpassant.ickenham.springmvc.IckenhamViewResolver;
 import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
 import com.jeroenreijn.examples.repository.InMemoryPresentationsRepository;
 import com.jeroenreijn.examples.repository.PresentationsRepository;
+import com.jeroenreijn.examples.view.EmptyViewResolver;
 import com.jeroenreijn.examples.view.HtmlFlowViewResolver;
 import com.jeroenreijn.examples.view.KotlinxHtmlViewResolver;
 import com.jeroenreijn.examples.view.LiqpView;
@@ -254,10 +255,16 @@ public class WebMvcConfig implements ApplicationContextAware, WebMvcConfigurer {
 	@Bean
 	public ViewResolver rtemplateViewResolver() {
 		RtemplateViewResolver bean=new RtemplateViewResolver();
-//	    InternalResourceViewResolver bean = new InternalResourceViewResolver();
-//	    bean.setViewClass(JstlView.class);
 	    bean.setViewNames("*-rtemplate");
 	    bean.setSuffix(".rtemplate");
+	    return bean;
+	}
+
+	@Bean
+	public ViewResolver emptyViewResolver() {
+		EmptyViewResolver bean=new EmptyViewResolver();
+	    bean.setViewNames("*-empty");
+	    bean.setSuffix(".empty");
 	    return bean;
 	}
 
